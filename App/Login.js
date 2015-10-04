@@ -3,14 +3,23 @@
 var React = require('react-native');
 var {
   Text,
+  StyleSheet,
+  View
 } = React;
 
 var Login = React.createClass({
     render: function () {
         return (
-            <Text>Hello</Text>
+            <View style={styles.container}></View>
         );
     }
 });
+
+var styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#f5fcff',
+        flex: 1
+    }
+})
 
 module.exports = Login;
