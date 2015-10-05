@@ -13,6 +13,7 @@ var Login = React.createClass({
         return (
             <View style={styles.container}>
                 <Image style={styles.logo} source={require('image!octocat')} />
+                <Text style={styles.heading}>Hello Octo Cat!</Text>
             </View>
         );
     }
@@ -28,6 +29,10 @@ var styles = StyleSheet.create({
     logo: {
         width: 66,
         height: 55
+    },
+    heading: {
+        fontSize: 30,
+        marginTop: 8
     }
 })
 
