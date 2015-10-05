@@ -10,17 +10,22 @@ var {
   StyleSheet,
   Text,
   View,
+  Component,
 } = React;
 
 var Login = require('./Login');
 
-var App = React.createClass({
-  render: function() {
+class App extends Component{
+    constructor(props) {
+        super(props);
+    }
+    
+  render() {
     return (
       <Login />
     );
   }
-});
+}
 
 var styles = StyleSheet.create({
   container: {
