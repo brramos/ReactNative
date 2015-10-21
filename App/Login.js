@@ -39,6 +39,14 @@ class Login extends Component{
     login() {
         console.log('Attempting to login with username: ' + this.state.username);
         this.setState({showProgress: true});
+        fetch.('url')
+        .then((response) => {
+            return response.json();
+        })
+        .then((results) => {
+            console.log(results);
+            this.setState({showProgress: false});
+        })
     }
 }
 
