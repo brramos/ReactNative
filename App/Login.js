@@ -21,13 +21,17 @@ class Login extends Component{
             <View style={styles.container}>
                 <Image style={styles.logo} source={require('image!octocat')} />
                 <Text style={styles.heading}>Hello Octo Cat!</Text>
-                <TextInput style={styles.input} placeholder="Github username" />
-                <TextInput style={styles.input} placeholder="Github password" secureTextEntry="true" />
-                <TouchableHighlight style={styles.button}>
+                <TextInput onChangeText={(text)=> this.setState({username: text})} style={styles.input} placeholder="Github username" />
+                <TextInput onChangeText={(text)=> this.setState({password: text})} style={styles.input} placeholder="Github password" secureTextEntry={true} />
+                <TouchableHighlight style={styles.button} onPress={this.login.bind(this)}>
                     <Text style={styles.buttonText}>Log in</Text>
                 </TouchableHighlight>
             </View>
         );
+    }
+
+    login() {
+        console.log('Attempting to login with username: ' + this.state.username);
     }
 }
 
