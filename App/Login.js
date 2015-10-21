@@ -44,9 +44,18 @@ class Login extends Component{
         var b = new buffer.Buffer(this.state.username + ':' + this.state.password);
         var encodedAuth = b.toString('base64');
 
-        fetch.('https://api.github.com/user', {
+        fetch('https://api.github.com/user', {
             headers: {
                 'Authorization' : 'Basic' + encodedAuth
+            }
+        })
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            }
+            throw {
+                badCredentials: response.status == 401,
+                unKnownError: response.status != 401
             }
         })
         .then((response) => {
@@ -54,8 +63,13 @@ class Login extends Component{
         })
         .then((results) => {
             console.log(results);
-            this.setState({showProgress: false});
         })
+        .catch((error) => {
+            this.setState(error);
+        })
+        .finally(() => {
+            this.setState({showProgress: false});
+        });
     }
 }
 
