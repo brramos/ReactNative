@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var buffer = require('buffer');
 var {
   Text,
   StyleSheet,
@@ -39,7 +40,15 @@ class Login extends Component{
     login() {
         console.log('Attempting to login with username: ' + this.state.username);
         this.setState({showProgress: true});
-        fetch.('url')
+
+        var b = new buffer.Buffer(this.state.username + ':' + this.state.password);
+        var encodedAuth = b.toString('base64');
+
+        fetch.('https://api.github.com/user', {
+            headers: {
+                'Authorization' : 'Basic' + encodedAuth
+            }
+        })
         .then((response) => {
             return response.json();
         })
