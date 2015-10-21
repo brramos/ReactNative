@@ -9,11 +9,16 @@ var {
   TextInput,
   TouchableHighlight,
   Component,
+  ActivityIndicatorIOS,
 } = React;
 
 class Login extends Component{
     constructor(props) {
         super(props);
+
+        this.state = {
+            showProgress: false
+        }
     }
 
     render() {
@@ -26,12 +31,14 @@ class Login extends Component{
                 <TouchableHighlight style={styles.button} onPress={this.login.bind(this)}>
                     <Text style={styles.buttonText}>Log in</Text>
                 </TouchableHighlight>
+                <ActivityIndicatorIOS animating={this.state.showProgress} size="large" style={styles.loading} />
             </View>
         );
     }
 
     login() {
         console.log('Attempting to login with username: ' + this.state.username);
+        this.setState({showProgress: true});
     }
 }
 
@@ -70,6 +77,9 @@ var styles = StyleSheet.create({
         fontSize: 22,
         color: 'white',
         alignSelf: 'center'
+    },
+    loading: {
+        marginTop: 20
     }
 })
 
